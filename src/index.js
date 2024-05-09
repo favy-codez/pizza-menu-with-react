@@ -51,7 +51,7 @@ import ReactDOM from "react-dom/client";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -60,18 +60,33 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  const style = {color:"red", fontSize: "48px", textTransform: "uppercase"}
+
+  return (
+    <header className="header">
+      <h1
+        style={style}
+      >
+        Fast React Pizza Co.
+      </h1>
+      {/* <h1
+        style={{ color: "red", fontSize: "48px", textTransform: "uppercase" }}
+      >
+        Fast React Pizza Co.
+      </h1> */}
+    </header>
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>
       <Pizza />
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 }
 
@@ -90,8 +105,7 @@ function Footer() {
   //   alert("we are closed")
   // }
   return (
-    <div>
-      
+    <div className="footer">
 
       {new Date().toLocaleDateString()}, We're currently open!</div>
     // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
@@ -103,7 +117,7 @@ function Pizza() {
   return (
     <div>
       <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h2>Pizza Prosciutto</h2>
+      <h3>Pizza Prosciutto</h3>
       <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
     </div>
   );
