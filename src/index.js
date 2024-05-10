@@ -60,15 +60,11 @@ function App() {
 }
 
 function Header() {
-  const style = {color:"red", fontSize: "48px", textTransform: "uppercase"}
+  const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
 
   return (
     <header className="header">
-      <h1
-        style={style}
-      >
-        Fast React Pizza Co.
-      </h1>
+      <h1 style={style}>Fast React Pizza Co.</h1>
       {/* <h1
         style={{ color: "red", fontSize: "48px", textTransform: "uppercase" }}
       >
@@ -82,23 +78,26 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza Prosciutto"
+        ingredient="Tomato, mozarella, ham, aragula, and burrata cheese"
+        photoName="pizzas/prosciutto.jpg"
+        price={10}
+      />
     </main>
   );
 }
 
 function Footer() {
   // new Date(): This creates a new Date object representing the current date and time.
-// .getHours(): This method retrieves the hour (from 0 to 23) of the current date and time.
+  // .getHours(): This method retrieves the hour (from 0 to 23) of the current date and time.
   const hour = new Date().getHours();
   // console.log(hour);
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour || hour >= closeHour;
   console.log(isOpen);
+
   // if(hour >= openHour || hour >= closeHour){
   //   alert("we are currently open")
   // }else{
@@ -106,19 +105,24 @@ function Footer() {
   // }
   return (
     <div className="footer">
-
-      {new Date().toLocaleDateString()}, We're currently open!</div>
+      {new Date().toLocaleDateString()}, We're currently open!
+    </div>
     // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
     // return React.createElement("footer", null, "We're currently open!");
   );
 }
 
-function Pizza() {
+function Pizza(props) {
+  // console.log(props)
+
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h3>Pizza Prosciutto</h3>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredient}</p>
+        <span>{props.price}</span>
+      </div>
     </div>
   );
 }
