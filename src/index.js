@@ -75,13 +75,20 @@ function Header() {
 }
 
 function Menu() {
+  // const pizzas = [];
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas">
-        {/* This is the callback function provided to the map() method. It takes
+
+      {/* numPizzas > 0 will return a truty or falsy value, */}
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {/* This is the callback function provided to the map() method. It takes
         each pizza object as its argument. */}
-        {/* Inside the arrow function, we have a JSX expression. It creates a{" "}
+          {/* Inside the arrow function, we have a JSX expression. It creates a{" "}
         <Pizza /> component for each pizza object in the pizzaData array. Each{" "}
         <Pizza /> component is passed two props: pizzaObj, which is set to the
         current pizza object, and key, which is set to the name property of the
@@ -89,11 +96,11 @@ function Menu() {
         <Pizza />
         component has a unique identifier. */}
 
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
 
-        {/* {pizzaData.map((pizza) => {
+          {/* {pizzaData.map((pizza) => {
           return (
             <Pizza
               name={pizza.name}
@@ -102,7 +109,8 @@ function Menu() {
             />
           );
         })} */}
-      </ul>
+        </ul>
+      ) : <p>We are currently working on our menu, please check back later</p>}
       {/* <Pizza
         name="Pizza Prosciutto"
         ingredient="Tomato, mozarella, ham, aragula, and burrata cheese"
