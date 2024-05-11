@@ -78,10 +78,22 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <div>
-        {pizzaData.map((pizza) => {
-          // Array.prototype.map() expects a return value from arrow function" is likely referring to the fact that 
-          // when you use map() on an array, it expects a return value from the callback function passed to it.
+      <ul className="pizzas">
+        {/* This is the callback function provided to the map() method. It takes
+        each pizza object as its argument. */}
+        {/* Inside the arrow function, we have a JSX expression. It creates a{" "}
+        <Pizza /> component for each pizza object in the pizzaData array. Each{" "}
+        <Pizza /> component is passed two props: pizzaObj, which is set to the
+        current pizza object, and key, which is set to the name property of the
+        pizza object. Using the name property as the key ensures that each{" "}
+        <Pizza />
+        component has a unique identifier. */}
+
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+
+        {/* {pizzaData.map((pizza) => {
           return (
             <Pizza
               name={pizza.name}
@@ -89,8 +101,8 @@ function Menu() {
               photoName={pizza.photoName}
             />
           );
-        })}
-      </div>
+        })} */}
+      </ul>
       {/* <Pizza
         name="Pizza Prosciutto"
         ingredient="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -129,14 +141,14 @@ function Pizza(props) {
   // console.log(props)
 
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredient}</p>
-        <span>{props.price}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
