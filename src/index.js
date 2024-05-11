@@ -118,7 +118,7 @@ function Footer() {
   // .getHours(): This method retrieves the hour (from 0 to 23) of the current date and time.
   const hour = new Date().getHours();
   // console.log(hour);
-  const openHour = 12;
+  const openHour = 2;
   const closeHour = 22;
   const isOpen = hour >= openHour || hour >= closeHour;
   console.log(isOpen);
@@ -130,7 +130,13 @@ function Footer() {
   // }
   return (
     <div className="footer">
-      {new Date().toLocaleDateString()}, We're currently open!
+      {isOpen && (
+        <div  className="order">
+          <p>We are open until {closeHour}:00, Visit us or order online !</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+      {/* {new Date().toLocaleDateString()}, We're currently open! */}
     </div>
     // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
     // return React.createElement("footer", null, "We're currently open!");
