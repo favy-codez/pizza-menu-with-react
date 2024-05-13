@@ -191,7 +191,7 @@ function Footer() {
     );
 }
 
-function Order({closeHour, openHour}) {
+function Order({closeHour, openHour, test}) {
   return (
     <div className="order">
       <p>We are open from {openHour} until {closeHour}:00, Visit us or order online !</p>
@@ -200,3 +200,4 @@ function Order({closeHour, openHour}) {
   );
 }
 ```
+if we try to destructure a property that doesn't exist, it simply returns undefined. example: text doesn't exist, so its undefined.
