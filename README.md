@@ -234,7 +234,8 @@ if we try to destructure a property that doesn't exist, it simply returns undefi
         <p>We are currently working on our menu, please check back later</p>
       )}
 
-      OR
+### OR
+
 
   {numPizzas > 0 ? (
         <React.Fragment>
@@ -256,7 +257,9 @@ if we try to destructure a property that doesn't exist, it simply returns undefi
       )}
 
 ```
+
 React Fragments can also accept keys and attributes, just like regular HTML elements. They're especially handy when you're mapping over arrays and generating lists of elements, as they allow you to avoid unnecessary wrapper elements around each item in the list.
+
 ```
 import React from "react";
 const MyList = ({ items }) => {
@@ -271,8 +274,57 @@ const MyList = ({ items }) => {
     </>
   );
 };
+```
 
+8. **Setting classes and text conditionally:** 
+```
+function Pizza({ pizzaObj }) {
 
- 
+  return (
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <div>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
+      </div>
+    </li>
+  );
+}
+```
 
+```
+function Pizza({ pizzaObj }) {
+
+  // if (pizzaObj.soldOut) return null;
+
+  return (
+    <li className="pizza">
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <div>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "SOLDOUT" : pizzaObj.price}</span>
+      </div>
+    </li>
+  );
+}
+```
+### OR
+```
+function Pizza({ pizzaObj }) {
+
+  // if (pizzaObj.soldOut) return null;
+
+  return (
+    <li className="pizza">
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <div>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        {pizzaObj.soldOut ? <span>SOLD OUT</span> : <span>{pizzaObj.price}</span>}
+      </div>
+    </li>
+  );
+}
 ```
