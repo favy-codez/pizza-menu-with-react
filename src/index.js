@@ -85,10 +85,15 @@ function Menu() {
 
       {/* numPizzas > 0 will return a truty or falsy value, */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {/* This is the callback function provided to the map() method. It takes
+        <React.Fragment>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {/* This is the callback function provided to the map() method. It takes
         each pizza object as its argument. */}
-          {/* Inside the arrow function, we have a JSX expression. It creates a{" "}
+            {/* Inside the arrow function, we have a JSX expression. It creates a{" "}
         <Pizza /> component for each pizza object in the pizzaData array. Each{" "}
         <Pizza /> component is passed two props: pizzaObj, which is set to the
         current pizza object, and key, which is set to the name property of the
@@ -96,11 +101,11 @@ function Menu() {
         <Pizza />
         component has a unique identifier. */}
 
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
 
-          {/* {pizzaData.map((pizza) => {
+            {/* {pizzaData.map((pizza) => {
           return (
             <Pizza
               name={pizza.name}
@@ -109,7 +114,8 @@ function Menu() {
             />
           );
         })} */}
-        </ul>
+          </ul>
+        </React.Fragment>
       ) : (
         <p>We are currently working on our menu, please check back later</p>
       )}
@@ -134,31 +140,36 @@ function Footer() {
   console.log(isOpen);
 
   if (!isOpen) return <p>wE ARE CLOSED!!!</p>;
-    // if(hour >= openHour || hour >= closeHour){
-    //   alert("we are currently open")
-    // }else{
-    //   alert("we are closed")
-    // }
-    return (
-      <div className="footer">
-        {isOpen ? <Order openHour={openHour} closeHour={closeHour} /> : (
-          <p>
-            We are currently closed, but we are happy to welcome you between the{" "}
-            {openHour}:00 and {closeHour}
-            :00
-          </p>
-        )}
-        {/* {new Date().toLocaleDateString()}, We're currently open! */}
-      </div>
-      // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
-      // return React.createElement("footer", null, "We're currently open!");
-    );
+  // if(hour >= openHour || hour >= closeHour){
+  //   alert("we are currently open")
+  // }else{
+  //   alert("we are closed")
+  // }
+  return (
+    <div className="footer">
+      {isOpen ? (
+        <Order openHour={openHour} closeHour={closeHour} />
+      ) : (
+        <p>
+          We are currently closed, but we are happy to welcome you between the{" "}
+          {openHour}:00 and {closeHour}
+          :00
+        </p>
+      )}
+      {/* {new Date().toLocaleDateString()}, We're currently open! */}
+    </div>
+    // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
+    // return React.createElement("footer", null, "We're currently open!");
+  );
 }
 
-function Order({closeHour, openHour}) {
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
-      <p>We are open from {openHour} until {closeHour}:00, Visit us or order online !</p>
+      <p>
+        We are open from {openHour} until {closeHour}:00, Visit us or order
+        online !
+      </p>
       <button className="btn">Order</button>
     </div>
   );

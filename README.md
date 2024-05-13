@@ -62,7 +62,9 @@ const App = () => {
     </ul>
     ) : <p>We are currently working on our menu, please check back later</p>}
 ```
-4. **conditional rendering with multiple returns :** Each component can only return one block of JSX, but the return can depend on a condition. 
+
+4. **conditional rendering with multiple returns :** Each component can only return one block of JSX, but the return can depend on a condition.
+
 ```
 function Footer() {
   const hour = new Date().getHours();
@@ -87,7 +89,9 @@ if (!isOpen) return <p>CLOSED</p>;
 
 }
 ```
+
 ### OR
+
 ```
 function Pizza(props){
   if (props.pizzaObj.soldOut) return <Header />;
@@ -97,18 +101,21 @@ return(
 )
 }
 ```
+
 ### OR
+
 ```
 function Pizza(props){
   if (props.pizzaObj.soldOut) return null;
-  
+
 return(
   .....
 )
 }
 ```
 
-5. **we can also use props to pass arguments into functions** - 
+5. **we can also use props to pass arguments into functions** -
+
 ```
 return (
       <div className="footer">
@@ -167,7 +174,9 @@ function Pizza({pizzaObj}) {
   );
 }
 ```
+
 we can also pass in other props
+
 ```
 function Footer() {
   const hour = new Date().getHours();
@@ -200,4 +209,70 @@ function Order({closeHour, openHour, test}) {
   );
 }
 ```
-if we try to destructure a property that doesn't exist, it simply returns undefined. example: text doesn't exist, so its undefined.
+
+if we try to destructure a property that doesn't exist, it simply returns undefined. example: test doesn't exist, so its undefined.
+
+7. **React Fragment** - React Fragments provide a way to group multiple children elements without adding extra nodes to the DOM. They are useful when you want to return multiple elements from a component's render method but don't want to wrap them in an additional container element. <> and </> are shorthand syntax for React Fragments. They allow you to return multiple elements without adding a wrapper <div> or any other element to the DOM. This is particularly useful when you want to maintain a clean and semantic HTML structure while rendering multiple elements. Here's how you can use React Fragments:
+
+```
+      {numPizzas > 0 ? (
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+
+
+          </ul>
+        </>
+      ) : (
+        <p>We are currently working on our menu, please check back later</p>
+      )}
+
+      OR
+
+  {numPizzas > 0 ? (
+        <React.Fragment>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+
+
+          </ul>
+        </React.Fragment>
+      ) : (
+        <p>We are currently working on our menu, please check back later</p>
+      )}
+
+```
+React Fragments can also accept keys and attributes, just like regular HTML elements. They're especially handy when you're mapping over arrays and generating lists of elements, as they allow you to avoid unnecessary wrapper elements around each item in the list.
+```
+import React from "react";
+const MyList = ({ items }) => {
+  return (
+    <>
+      {items.map((item, index) => (
+        <React.Fragment key={index}>
+          <p>{item}</p>
+          <hr />
+        </React.Fragment>
+      ))}
+    </>
+  );
+};
+
+
+ 
+
+```
