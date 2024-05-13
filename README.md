@@ -159,7 +159,6 @@ return(
 )
 
 function Pizza({pizzaObj}) {
-  // console.log(props)
 
   if (pizzaObj.soldOut) return null;
   return (
@@ -233,10 +232,11 @@ if we try to destructure a property that doesn't exist, it simply returns undefi
       ) : (
         <p>We are currently working on our menu, please check back later</p>
       )}
+```
 
 ### OR
 
-
+```
   {numPizzas > 0 ? (
         <React.Fragment>
           <p>
