@@ -328,3 +328,36 @@ function Pizza({ pizzaObj }) {
   );
 }
 ```
+
+9. **How to add styling to JSX:** 
+
+```
+function Header() {
+  const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+```
+
+### OR
+
+```
+function Header() {
+
+  return (
+    <header className="header">
+      <h1
+        style={{ color: "red", fontSize: "48px", textTransform: "uppercase" }}
+      >
+        Fast React Pizza Co.
+      </h1>
+    </header>
+  );
+}
+
+```
