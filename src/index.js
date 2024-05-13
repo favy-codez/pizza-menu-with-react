@@ -141,12 +141,7 @@ function Footer() {
     // }
     return (
       <div className="footer">
-        {isOpen ? (
-          <div className="order">
-            <p>We are open until {closeHour}:00, Visit us or order online !</p>
-            <button className="btn">Order</button>
-          </div>
-        ) : (
+        {isOpen ? <Order openHour={openHour} closeHour={closeHour} /> : (
           <p>
             We are currently closed, but we are happy to welcome you between the{" "}
             {openHour}:00 and {closeHour}
@@ -158,6 +153,16 @@ function Footer() {
       // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
       // return React.createElement("footer", null, "We're currently open!");
     );
+}
+
+function Order(props){
+
+  return (
+    <div className="order">
+      <p>We are open until {props.closeHour}:00, Visit us or order online !</p>
+      <button className="btn">Order</button>
+    </div>
+  );
 }
 
 function Pizza(props) {

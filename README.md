@@ -107,3 +107,26 @@ return(
 )
 }
 ```
+
+5. **we can also use props to pass arguments into functions** - 
+```
+return (
+      <div className="footer">
+        {isOpen ? <Order openHour={openHour} closeHour={closeHour} /> : (
+          <p>
+            We are currently closed, but we are happy to welcome you between the{" "}
+            {openHour}:00 and {closeHour}
+            :00
+          </p>
+        )}
+    )
+
+function Order(props){
+
+  return (
+    <div className="order">
+      <p>We are open until {props.closeHour}:00, Visit us or order online !</p>
+    </div>
+  );
+}
+```
