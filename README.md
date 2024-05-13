@@ -130,3 +130,73 @@ function Order(props){
   );
 }
 ```
+
+6. **destructuring props** - Destructuring props is a convenient way to extract specific properties from the props object passed to a component.
+
+```
+return(
+  <main className="menu">
+      <h2>Our Menu</h2>
+
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>We are currently working on our menu, please check back later</p>
+      )}
+    </main>
+)
+
+function Pizza({pizzaObj}) {
+  // console.log(props)
+
+  if (pizzaObj.soldOut) return null;
+  return (
+    <li className="pizza">
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <div>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
+      </div>
+    </li>
+  );
+}
+```
+we can also pass in other props
+```
+function Footer() {
+  const hour = new Date().getHours();
+  // console.log(hour);
+  const openHour = 2;
+  const closeHour = 22;
+  const isOpen = hour >= openHour || hour >= closeHour;
+  console.log(isOpen);
+
+  if (!isOpen) return <p>wE ARE CLOSED!!!</p>;
+    return (
+      <div className="footer">
+        {isOpen ? <Order openHour={openHour} closeHour={closeHour} /> : (
+          <p>
+            We are currently closed, but we are happy to welcome you between the{" "}
+            {openHour}:00 and {closeHour}
+            :00
+          </p>
+        )}
+      </div>
+    );
+}
+
+function Order({closeHour, openHour}) {
+  return (
+    <div className="order">
+      <p>We are open from {openHour} until {closeHour}:00, Visit us or order online !</p>
+      <button className="btn">Order</button>
+    </div>
+  );
+}
+```
