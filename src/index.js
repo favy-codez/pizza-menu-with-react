@@ -110,7 +110,9 @@ function Menu() {
           );
         })} */}
         </ul>
-      ) : <p>We are currently working on our menu, please check back later</p>}
+      ) : (
+        <p>We are currently working on our menu, please check back later</p>
+      )}
       {/* <Pizza
         name="Pizza Prosciutto"
         ingredient="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -131,29 +133,37 @@ function Footer() {
   const isOpen = hour >= openHour || hour >= closeHour;
   console.log(isOpen);
 
-  // if(hour >= openHour || hour >= closeHour){
-  //   alert("we are currently open")
-  // }else{
-  //   alert("we are closed")
-  // }
-  return (
-    <div className="footer">
-      {isOpen && (
-        <div  className="order">
-          <p>We are open until {closeHour}:00, Visit us or order online !</p>
-          <button className="btn">Order</button>
-        </div>
-      )}
-      {/* {new Date().toLocaleDateString()}, We're currently open! */}
-    </div>
-    // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
-    // return React.createElement("footer", null, "We're currently open!");
-  );
+  if (!isOpen) return <p>wE ARE CLOSED!!!</p>;
+    // if(hour >= openHour || hour >= closeHour){
+    //   alert("we are currently open")
+    // }else{
+    //   alert("we are closed")
+    // }
+    return (
+      <div className="footer">
+        {isOpen ? (
+          <div className="order">
+            <p>We are open until {closeHour}:00, Visit us or order online !</p>
+            <button className="btn">Order</button>
+          </div>
+        ) : (
+          <p>
+            We are currently closed, but we are happy to welcome you between the{" "}
+            {openHour}:00 and {closeHour}
+            :00
+          </p>
+        )}
+        {/* {new Date().toLocaleDateString()}, We're currently open! */}
+      </div>
+      // React.createElement returns a React element that you can then render to the DOM using ReactDOM.render or include in other elements to build up your UI tree.
+      // return React.createElement("footer", null, "We're currently open!");
+    );
 }
 
 function Pizza(props) {
   // console.log(props)
 
+  if (props.pizzaObj.soldOut) return null;
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.name} />

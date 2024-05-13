@@ -62,3 +62,48 @@ const App = () => {
     </ul>
     ) : <p>We are currently working on our menu, please check back later</p>}
 ```
+4. **conditional rendering with multiple returns :** Each component can only return one block of JSX, but the return can depend on a condition. 
+```
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+if (!isOpen) return <p>CLOSED</p>;
+
+  return (
+    <footer className="footer">
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
+      )}
+    </footer>
+  );
+
+}
+```
+### OR
+```
+function Pizza(props){
+  if (props.pizzaObj.soldOut) return <Header />;
+
+return(
+  .....
+)
+}
+```
+### OR
+```
+function Pizza(props){
+  if (props.pizzaObj.soldOut) return null;
+  
+return(
+  .....
+)
+}
+```
